@@ -84,7 +84,7 @@ function loadFile(url, callback ) {
     xhr.onload = xhrSuccess;
     xhr.onerror = xhrError;
     xhr.open("GET", url, true);
-    xhr.send(null);
+    xhr.send();
 }
 function appenderBender(message) {
     console.log(JSON.parse(this.responseText));

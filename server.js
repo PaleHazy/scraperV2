@@ -3,18 +3,22 @@ const axios = require("axios")
 const cheerio = require("cheerio")
 const mongoose = require("mongoose");
 var db = require("./models");
-
+var uristring =
+    process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    'mongodb://localhost/HelloMongoose';
 const app = express();
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 mongoose.connect(
-  "mongodb://localhost/scraperBase",
-  { useNewUrlParser: true },
-  function() {
-    console.log("we conn bruh");
-  }
-);
+  uristring, function (err, res) {
+    if (err) {
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+    } else {
+    console.log ('Succeeded connected to: ' + uristring);
+    }
+  });
 
 app.get("/article", (req, res) => {
   db.Article.find({})
@@ -73,7 +77,7 @@ app.get("/scrape", (req, res) => {
         res.send("done")
     })
 })
-const port = process.env.PORT || 80
-app.listen(port, function(err) {
+var theport = process.env.PORT || 5000;
+app.listen(theport, function(err) {
   console.log("welcome to port " + port);
 });
