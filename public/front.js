@@ -58,7 +58,7 @@ appendHere.onclick = function(event) {
 function postFile(id, obj){
     console.log(obj)
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/articles/' + id, true )
+    xhr.open('POST', '/articles/' + id, true )
     xhr.setRequestHeader('Content-Type', 'application/json');
     let queef = obj
     xhr.send(JSON.stringify(queef))
@@ -93,11 +93,11 @@ function appenderBender(message) {
             let div = document.createElement('div');
             let p = document.createElement('p');
             console.log(response[i])
-            p.innerText = response[i].link
+            p.innerText = response[i].title
             p.setAttribute('data-id', response[i]._id )
             let pz = document.createElement('a');
-            pz.innerText = response[i].title
-            pz.href = response[i].title
+            pz.innerText = response[i].link
+            pz.href = response[i].link
             div.appendChild(p, pz)
             div.appendChild(pz)
             appendHere.appendChild(div)
