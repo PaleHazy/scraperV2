@@ -4,7 +4,7 @@ const cheerio = require("cheerio")
 const mongoose = require("mongoose");
 var db = require("./models");
 var uristring =
-    process.env.MONGOLAB_URI ||
+    process.env.MONGODB_URI ||
     process.env.MONGOHQ_URL ||
     'mongodb://localhost/HelloMongoose';
 const app = express();
