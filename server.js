@@ -73,7 +73,7 @@ app.get("/scrape", (req, res) => {
         res.send("done")
     })
 })
-
-app.listen(3000, function(err) {
-  console.log("welcome to port 3000");
+const port = process.env.PORT || 80
+app.listen(port, function(err) {
+  console.log("welcome to port " + port);
 });
